@@ -1710,10 +1710,9 @@ namespace QuantConnect
         /// <returns>PyList</returns>
         public static PyList ToPyList(this IEnumerable enumerable)
         {
-            var pyList = new PyList();
-
             using (Py.GIL())
             {
+                var pyList = new PyList();
                 foreach (var item in enumerable)
                 {
                     using (var pyObject = item.ToPython())
@@ -1721,9 +1720,9 @@ namespace QuantConnect
                         pyList.Append(pyObject);
                     }
                 }
-            }
 
-            return pyList;
+                return pyList;
+            }
         }
 
         /// <summary>
